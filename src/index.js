@@ -1,36 +1,115 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import PlayerList from './PlayerList';
 
-const App = () => {
-    const tropaGay = [
+import React from "react";
+import ReactDOM from "react-dom";
+
+import 'bootstrap/dist/css/bootstrap.css'
+
+import PlayerList from './PlayerList'
+
+
+//CRIAR COMPONENTE
+
+
+class App extends React.Component {
+
+     jogadores = [
         {
-            nome: "Pedro Felipe",
-            posicao: "de 4",
-            codeNome: "Bumbum de Veludo"
+           nome : "Cristiano Ronaldo",
+           time : "Juventus",
+           pais : "Italia"
         },
         {
-            nome: "Dreykson",
-            posicao: "Mamae e pai",
-            codeNome: "Boca de ouro"
-        }
+            nome : "Neymar Jr",
+            time : "PSG",
+            pais : "França"
+        },
+        {
+            nome : "Lionel Messi",
+            time : "Barcelona",
+            pais : "Espanha"
+        },
+
+    {
+
+
+            nome : "Zlatan Ibrahimovic",
+            time : "Milan",
+            pais : "Itália"
+
+
+    }
+
     ]
-    return (
-        <div>
-            <section style={{ display: "flex", justifyContent: "center" }}>
-                <form style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "80%" }} method="POST">
-                    <label>Nome</label>
-                    <input style={{ borderRadius: "7px", border: "1px solid red", outline: "none", width: "100%", paddingLeft: "15px" }} />
-                    <label>Posicao</label>
-                    <input style={{ borderRadius: "7px", border: "1px solid red", outline: "none", width: "100%", paddingLeft: "15px" }} />
-                    <label>CodeNome</label>
-                    <input style={{ borderRadius: "7px", border: "1px solid red", outline: "none", width: "100%", paddingLeft: "15px" }} />
-                    <button style={{ border: "none", borderRadius: "14px", margin: "5px 0", backgroundColor: "red", color: "white", height: "34px", fontSize: "24px", width: "100%" }}>Me Chupa</button>
-                </form>
-            </section>
-            <PlayerList tropa={tropaGay}/>
-        </div>
-    );
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            indice: 0
+        }
+
+    }
+
+    
+
+    incrementarIndice = (event) =>{
+       console.log(this);
+       
+       if(this.state.indice < this.jogadores.length -1){
+        this.setState({
+            indice: this.state.indice+1
+        })
+       }
+        
+
+    }
+
+    decrementarIndice = (event) =>{
+        if(this.state.indice > 0){
+            this.setState({
+                indice: this.state.indice - 1
+            })
+        }
+
+        
+        
+    }
+
+    render() {
+        return (
+            <div>
+
+                <div
+                    class="container">
+                        <div class="container">
+                    <h1>Jogadores</h1>
+                    {this.jogador}
+                </div>
+
+                <PlayerList indice = {this.jogadores[this.state.indice]}> </PlayerList>
+                
+                <div>
+                    
+                </div>
+
+
+                    <button type="button" class="btn btn-danger" onClick={this.decrementarIndice}>
+                        Anterior
+                   </button>
+
+                    <button type="button" class="btn btn-danger" onClick={this.incrementarIndice}>Proximo</button>
+
+
+                </div>
+
+            </div>
+
+
+
+        );
+
+    }
+
 }
 
-ReactDOM.render(<App />, document.querySelector("#root"))
+ReactDOM.render(<App/>,document.querySelector("#root"));

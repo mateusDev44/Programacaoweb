@@ -1,18 +1,20 @@
-import React from 'react';
+import React from 'react'
 
-const PlayerList = (props)=> {
-    console.log(props.tropa.find(soldado => soldado.nome === "Pedro Felipe"))
-    let list = [];
-    props.tropa.forEach(soldado => {
-        list.push(
+
+class PlayerList extends React.Component {
+    render(props){
+        return(
             <div>
-                <h1>{soldado.nome}</h1>
-                <h2>{soldado.posicao}</h2>
-                <h3>{soldado.codeNome}</h3>
-            </div>
-        )
-    })
-    return list;
-};
+                <ol type="1">
+                    <li>{this.props.indice.nome}</li>
+                    <li>{this.props.indice.time}</li>
+                    <li>{this.props.indice.pais}</li>
+                </ol>
 
-export default PlayerList;
+            </div>
+            
+        )
+    }
+}
+
+export default PlayerList
